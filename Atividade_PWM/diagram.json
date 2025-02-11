@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "Paulo Cesar Di Lauro",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-pi-pico-w",
+      "id": "pico",
+      "top": -118.45,
+      "left": -150.05,
+      "attrs": { "builder": "pico-sdk" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": -69.2, "left": 28.8, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -61.2,
+      "left": -303.4,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 13.55,
+      "left": -259.2,
+      "attrs": { "value": "330" }
+    }
+  ],
+  "connections": [
+    [ "servo1:GND", "pico:GND.8", "black", [ "h0", "v-67.2" ] ],
+    [ "servo1:V+", "pico:3V3", "red", [ "h-19.2", "v-57.5", "h-86.4" ] ],
+    [ "servo1:PWM", "pico:GP22", "blue", [ "h-19.2", "v9.8" ] ],
+    [ "pico:GP12", "r1:2", "blue", [ "h-9.6", "v0.04" ] ],
+    [ "r1:1", "led1:A", "blue", [ "v0", "h-19.2" ] ],
+    [ "led1:C", "pico:GND.4", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
