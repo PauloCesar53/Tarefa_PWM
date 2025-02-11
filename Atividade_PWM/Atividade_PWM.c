@@ -11,8 +11,8 @@
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
 
-#define PWM_GPIO 12 //apenas para teste no LED azul da BitDogLab (comentar linha 6 para usar essa)
-//#define PWM_GPIO 22 // Pino GPIO conectado ao servo motor
+//#define PWM_GPIO 12 //apenas para teste no LED azul da BitDogLab (comentar linha 6 para usar essa)
+#define PWM_GPIO 22 // Pino GPIO conectado ao servo motor
 #define PWM_DIVISER 125 // Divisor de clock para 125 (125 MHz / 125 = 1 MHz)
 #define WRAP_PERIOD 20000 // Período de 20 ms (20000 µs)
 
@@ -35,22 +35,20 @@ uint pwm_setup()
     return slice;// retorna o slice do gpio 22
 }
 int main() {
-    
+    stdio_init_all();
+
     uint slice=pwm_setup();
 
     // 1) Ajusta o ciclo ativo para 2400 µs (180°)
     duty_cycle_atual(slice, PWM_GPIO, 2400);
-    printf("Posição: 180°\n");
     sleep_ms(5000); // Aguarda 5 segundos
 
     // 2) Ajusta o ciclo ativo para 1470 µs (90°)
     duty_cycle_atual(slice, PWM_GPIO, 1470);
-    printf("Posição: 90°\n");
     sleep_ms(5000); // Aguarda 5 segundos
 
     // 3) Ajusta o ciclo ativo para 500 µs (0°)
     duty_cycle_atual(slice, PWM_GPIO, 500);
-    printf("Posição: 0°\n");
     sleep_ms(5000); // Aguarda 5 segundos
 
     // 4) Movimentação suave entre 0° e 180°
